@@ -3,88 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Premium Presentation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>2026 新加坡副业破局复盘 - Felix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        /* 直接引用自 STYLE_PRESETS.md: Midnight Executive 风格 */
+        /* 引用自 STYLE_PRESETS.md: Swiss Modern 风格 */
         :root {
-            --bg: #050a15;
-            --text: #e2e8f0;
-            --accent: #38bdf8;
-            --secondary: #1e293b;
-            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg: #ffffff;
+            --text: #000000;
+            --accent: #ff0000; /* 瑞士红，用于点缀关键数据 */
+            --secondary: #f0f0f0;
+            --transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         body, html {
             margin: 0; padding: 0;
             background: var(--bg); color: var(--text);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             overflow-x: hidden; scroll-snap-type: y mandatory;
         }
 
         section.slide {
             height: 100vh; width: 100vw;
             display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            scroll-snap-align: start;
-            padding: 40px; box-sizing: border-box;
-            position: relative;
+            justify-content: center; align-items: flex-start;
+            padding: 8% 12%; box-sizing: border-box;
+            scroll-snap-align: start; position: relative;
+            border-bottom: 1px solid var(--secondary);
         }
 
-        /* 作者在 SKILL.md 中要求的响应式视口设置 */
-        .content-wrapper {
-            max-width: 1000px; width: 100%;
-            display: flex; flex-direction: column;
-            gap: 20px;
-        }
+        /* 作者要求的响应式容器 */
+        .content { max-width: 1100px; width: 100%; }
 
-        h1 { font-size: clamp(3rem, 10vw, 6rem); margin: 0; font-weight: 700; letter-spacing: -0.05em; color: var(--accent); }
-        h2 { font-size: clamp(1.5rem, 5vw, 3rem); margin: 0; opacity: 0.9; }
-        p { font-size: 1.2rem; line-height: 1.6; opacity: 0.7; max-width: 700px; }
+        .slide-num { position: absolute; top: 40px; right: 40px; font-weight: 900; font-size: 1.2rem; opacity: 0.2; }
 
-        /* 滚动触发动画逻辑 */
-        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
+        h1 { font-size: clamp(2.2rem, 5.5vw, 5rem); line-height: 0.95; margin: 0; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; }
+        h2 { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 1.5rem; font-weight: 900; line-height: 1.1; }
+        p { font-size: 1.4rem; line-height: 1.5; max-width: 750px; margin-top: 20px; color: #444; }
+        
+        .point-list { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .point-item { border-top: 4px solid var(--text); padding-top: 15px; }
+        .point-item h3 { margin: 0; font-size: 1.2rem; text-transform: uppercase; }
+        .point-item p { font-size: 1.1rem; margin-top: 10px; }
+
+        /* 动画逻辑 */
+        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
         .slide.active .reveal { opacity: 1; transform: translateY(0); }
-        .slide.active .reveal:nth-child(2) { transition-delay: 0.2s; }
-        .slide.active .reveal:nth-child(3) { transition-delay: 0.4s; }
+        .slide.active .reveal:nth-child(2) { transition-delay: 0.1s; }
+        .slide.active .reveal:nth-child(3) { transition-delay: 0.2s; }
 
-        /* 底部进度条 */
-        .progress-bar {
-            position: fixed; bottom: 0; left: 0; height: 4px;
-            background: var(--accent); width: 0%; z-index: 100;
-            transition: width 0.3s ease;
+        .cta-button {
+            display: inline-block; background: var(--text); color: var(--bg);
+            padding: 20px 40px; text-decoration: none; font-weight: 900;
+            margin-top: 40px; text-transform: uppercase; letter-spacing: 1px;
         }
+
+        .progress-bar { position: fixed; left: 0; bottom: 0; height: 8px; background: var(--text); width: 0%; z-index: 100; transition: width 0.4s; }
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progress"></div>
 
     <section class="slide active">
-        <div class="content-wrapper">
-            <h1 class="reveal">DESIGNED BY CODE</h1>
-            <h2 class="reveal">不仅仅是一个幻灯片</h2>
-            <p class="reveal">这是基于 zarazhangrui/frontend-slides 的视觉规范构建的单文件 HTML 演示文稿。</p>
+        <span class="slide-num">01</span>
+        <div class="content">
+            <h1 class="reveal">2026 新加坡<br><span style="color:var(--accent)">副业破局</span></h1>
+            <p class="reveal">深度拆解：如何借力“顶级圈子”与“自动化获客系统”？<br><strong>店小二创始人团队内部商业闭环复盘</strong></p>
         </div>
     </section>
 
     <section class="slide">
-        <div class="content-wrapper">
-            <h1 class="reveal">ZERO DEBT</h1>
-            <h2 class="reveal">无依赖，纯原生</h2>
-            <p class="reveal">没有 npm，没有复杂的 build 流程。这个文件在 10 年后的浏览器里依然能完美运行。</p>
+        <span class="slide-num">02</span>
+        <div class="content">
+            <h2 class="reveal">在新加坡，你的努力<br>是否有“复利”？</h2>
+            <div class="point-list">
+                <div class="point-item reveal">
+                    <h3>体力陷阱</h3>
+                    <p>只要停下来，收入就归零（跑车、送餐、代办）。</p>
+                </div>
+                <div class="point-item reveal">
+                    <h3>人脉瓶颈</h3>
+                    <p>害怕推销、怕伤面子、怕被拒绝。</p>
+                </div>
+                <div class="point-item reveal">
+                    <h3>认知孤岛</h3>
+                    <p>缺乏高阶圈子，导致长期单打独斗。</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="slide">
-        <div class="content-wrapper">
-            <h1 class="reveal">SWIPE UP</h1>
-            <h2 class="reveal">支持移动端手势</h2>
-            <p class="reveal">在手机浏览器打开，享受丝滑的滑动切换体验。</p>
+        <span class="slide-num">03</span>
+        <div class="content">
+            <h2 class="reveal">从“消费消耗”<br>到“资产收益”</h2>
+            <div class="point-list">
+                <div class="point-item reveal">
+                    <h3>消费权移交</h3>
+                    <p>换个地方花钱，就能换个地方赚钱。</p>
+                </div>
+                <div class="point-item reveal">
+                    <h3>零风险闭环</h3>
+                    <p>零囤货、零投资、真正实现无门槛起步。</p>
+                </div>
+                <div class="point-item reveal">
+                    <h3>倍增系统</h3>
+                    <p>借力全球顶尖供应链，建立被动现金流。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <span class="slide-num">04</span>
+        <div class="content">
+            <h2 class="reveal">为什么餐饮大亨<br>选择亲自下场？</h2>
+            <p class="reveal">大佬比你更爱惜羽毛。他们看重的是完全合规、无需砸钱且能全球化的复利系统。跟着有结果的人，才能拿到结果。</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <span class="slide-num">05</span>
+        <div class="content">
+            <h2 class="reveal">全球化直购平台<br>艾多美 (Atomy)</h2>
+            <div class="point-list">
+                <div class="point-item reveal">
+                    <h3>大厂出品</h3>
+                    <p>韩国原子能研究院 + 韩国科玛 (Kolmar)。</p>
+                </div>
+                <div class="point-item reveal">
+                    <h3>极致性价比</h3>
+                    <p>高品质低价格，产品好到不用推销也有复购。</p>
+                </div>
+                <div class="point-item reveal">
+                    <h3>全球连线</h3>
+                    <p>App一键下单，系统自动结算全球分红。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" style="background:var(--secondary)">
+        <span class="slide-num">06</span>
+        <div class="content">
+            <h2 class="reveal">我们的独家武器<br><span style="color:var(--accent)">全自动获客系统</span></h2>
+            <p class="reveal">解决“怕找人”的恐惧。通过 FB 广告与 Kit.com 自动跟进，让合伙人主动找到你。</p>
+            <div class="point-item reveal" style="margin-top:20px">
+                <h3>自动化闭环</h3>
+                <p>24小时自动筛选，无需网红化，小白也能操作。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <span class="slide-num">07</span>
+        <div class="content">
+            <h2 class="reveal">在这里，你获得的<br>不仅是一份收入</h2>
+            <ul style="list-style:none; padding:0; font-size:1.5rem; font-weight:900;">
+                <li class="reveal">● 一份可持续传承的管道现金流</li>
+                <li class="reveal">● 结识各行各业的精英合伙人圈子</li>
+                <li class="reveal">● 掌握最先进的互联网自动化营销技能</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <span class="slide-num">08</span>
+        <div class="content">
+            <h1 class="reveal">开启你的<br>“管道资产”</h1>
+            <p class="reveal">添加 WhatsApp：<strong>[你的号码]</strong></p>
+            <a href="#" class="cta-button reveal">预约线下沙龙推演 →</a>
         </div>
     </section>
 
     <script>
-        // 实现作者在 README 中提到的交互逻辑
+        // 实现作者在 README 中要求的滚动观察逻辑
         const slides = document.querySelectorAll('.slide');
         const progress = document.getElementById('progress');
 
@@ -92,12 +184,11 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    // 更新进度条
                     const index = Array.from(slides).indexOf(entry.target);
                     progress.style.width = ((index + 1) / slides.length * 100) + '%';
                 }
             });
-        }, { threshold: 0.6 });
+        }, { threshold: 0.5 });
 
         slides.forEach(slide => observer.observe(slide));
     </script>
