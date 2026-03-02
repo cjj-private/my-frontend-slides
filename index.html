@@ -3,105 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hellosg.org 外籍劳工版块上线介绍</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>My Creative Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #ffffff;
-            --text: #1a1a1a;
-            --accent: #0052cc; /* 狮城蓝 */
-            --secondary: #f4f4f4;
-            --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        body, html {
-            margin: 0; padding: 0;
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg); color: var(--text);
-            overflow-x: hidden; scroll-snap-type: y mandatory;
-        }
-
-        section.slide {
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 10%;
-            box-sizing: border-box;
-            scroll-snap-align: start;
-            position: relative;
-            border-bottom: 1px solid var(--secondary);
-        }
-
-        h1 { font-size: 5rem; line-height: 1; margin: 0; font-weight: 700; letter-spacing: -2px; }
-        h2 { font-size: 3rem; margin-bottom: 1rem; color: var(--accent); }
-        p { font-size: 1.5rem; max-width: 600px; line-height: 1.6; opacity: 0.8; }
-
-        /* 动画效果 */
-        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
-        .slide:target .reveal, .slide.active .reveal { opacity: 1; transform: translateY(0); }
-
-        /* 装饰元素 */
-        .badge { background: var(--text); color: white; padding: 5px 12px; font-size: 0.9rem; margin-bottom: 20px; }
-        
-        /* 响应式 */
-        @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2rem; }
-            p { font-size: 1.1rem; }
-        }
+        :root { --bg: #0a0a0a; --text: #ffffff; --accent: #ff3e00; }
+        body, html { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-snap-type: y mandatory; }
+        section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; scroll-snap-align: start; text-align: center; }
+        h1 { font-size: 8vw; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
+        .accent { color: var(--accent); }
+        p { font-size: 1.5rem; opacity: 0.6; max-width: 600px; }
+        .cursor { width: 20px; height: 20px; border: 2px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; transition: transform 0.1s; z-index: 100; }
     </style>
 </head>
 <body>
-
-    <section class="slide active" id="home">
-        <div class="badge">NEW FEATURE</div>
-        <h1 class="reveal">hellosg.org</h1>
-        <h2 class="reveal">外籍劳工版块上线</h2>
-        <p class="reveal">连接社区，服务狮城。为在新加坡奋斗的每一位外籍劳工提供更直观、更便捷的信息支持。</p>
+    <div class="cursor" id="cursor"></div>
+    <section>
+        <h1>HELLO <span class="accent">WORLD</span></h1>
+        <p>这是一个基于 Frontend-Slides 风格的纯净演示文稿。</p>
     </section>
-
-    <section class="slide" id="mission">
-        <h2 class="reveal">为什么推出此版块？</h2>
-        <p class="reveal">1. 消除信息差：让政策、法律和生活资讯触手可及。<br>
-           2. 强化社群感：建立一个互助且透明的信息分享平台。<br>
-           3. 提升用户体验：专门针对手机移动端优化的阅读体验。</p>
+    <section>
+        <h1>DESIGN <span class="accent">FIRST</span></h1>
+        <p>无需复杂框架，只需 HTML & CSS。</p>
     </section>
-
-    <section class="slide" id="features">
-        <h2 class="reveal">核心功能亮点</h2>
-        <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%;">
-            <div style="background: var(--secondary); padding: 20px;">
-                <h3>📜 政策直通车</h3>
-                <p style="font-size: 1rem;">最新的 MOM 规定与准证办理指南。</p>
-            </div>
-            <div style="background: var(--secondary); padding: 20px;">
-                <h3>🏠 生活助手</h3>
-                <p style="font-size: 1rem;">医疗、汇款与日常求助入口。</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="slide" id="contact">
-        <h1 class="reveal" style="font-size: 3rem;">立即访问</h1>
-        <p class="reveal">www.hellosg.org/migrant-workers</p>
-        <div class="reveal" style="margin-top: 40px;">
-            <a href="#" style="text-decoration: none; color: var(--accent); font-weight: bold; border: 2px solid var(--accent); padding: 15px 30px;">加入我们 →</a>
-        </div>
+    <section>
+        <h1>STAY <span class="accent">COOL</span></h1>
+        <p>代码即艺术。感谢访问我的 GitHub Pages。</p>
     </section>
 
     <script>
-        // 简单的滚动激活脚本
-        const slides = document.querySelectorAll('.slide');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.5 });
-
-        slides.forEach(slide => observer.observe(slide));
+        document.addEventListener('mousemove', e => {
+            const cursor = document.getElementById('cursor');
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
     </script>
 </body>
 </html>
