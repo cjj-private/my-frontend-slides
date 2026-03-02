@@ -3,39 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Creative Presentation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <title>My Premium Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #0a0a0a; --text: #ffffff; --accent: #ff3e00; }
-        body, html { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-snap-type: y mandatory; }
-        section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; scroll-snap-align: start; text-align: center; }
-        h1 { font-size: 8vw; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
-        .accent { color: var(--accent); }
-        p { font-size: 1.5rem; opacity: 0.6; max-width: 600px; }
-        .cursor { width: 20px; height: 20px; border: 2px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; transition: transform 0.1s; z-index: 100; }
+        /* 直接引用自 STYLE_PRESETS.md: Midnight Executive 风格 */
+        :root {
+            --bg: #050a15;
+            --text: #e2e8f0;
+            --accent: #38bdf8;
+            --secondary: #1e293b;
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background: var(--bg); color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; scroll-snap-type: y mandatory;
+        }
+
+        section.slide {
+            height: 100vh; width: 100vw;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            scroll-snap-align: start;
+            padding: 40px; box-sizing: border-box;
+            position: relative;
+        }
+
+        /* 作者在 SKILL.md 中要求的响应式视口设置 */
+        .content-wrapper {
+            max-width: 1000px; width: 100%;
+            display: flex; flex-direction: column;
+            gap: 20px;
+        }
+
+        h1 { font-size: clamp(3rem, 10vw, 6rem); margin: 0; font-weight: 700; letter-spacing: -0.05em; color: var(--accent); }
+        h2 { font-size: clamp(1.5rem, 5vw, 3rem); margin: 0; opacity: 0.9; }
+        p { font-size: 1.2rem; line-height: 1.6; opacity: 0.7; max-width: 700px; }
+
+        /* 滚动触发动画逻辑 */
+        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
+        .slide.active .reveal { opacity: 1; transform: translateY(0); }
+        .slide.active .reveal:nth-child(2) { transition-delay: 0.2s; }
+        .slide.active .reveal:nth-child(3) { transition-delay: 0.4s; }
+
+        /* 底部进度条 */
+        .progress-bar {
+            position: fixed; bottom: 0; left: 0; height: 4px;
+            background: var(--accent); width: 0%; z-index: 100;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
-    <div class="cursor" id="cursor"></div>
-    <section>
-        <h1>HELLO <span class="accent">WORLD</span></h1>
-        <p>这是一个基于 Frontend-Slides 风格的纯净演示文稿。</p>
+    <div class="progress-bar" id="progress"></div>
+
+    <section class="slide active">
+        <div class="content-wrapper">
+            <h1 class="reveal">DESIGNED BY CODE</h1>
+            <h2 class="reveal">不仅仅是一个幻灯片</h2>
+            <p class="reveal">这是基于 zarazhangrui/frontend-slides 的视觉规范构建的单文件 HTML 演示文稿。</p>
+        </div>
     </section>
-    <section>
-        <h1>DESIGN <span class="accent">FIRST</span></h1>
-        <p>无需复杂框架，只需 HTML & CSS。</p>
+
+    <section class="slide">
+        <div class="content-wrapper">
+            <h1 class="reveal">ZERO DEBT</h1>
+            <h2 class="reveal">无依赖，纯原生</h2>
+            <p class="reveal">没有 npm，没有复杂的 build 流程。这个文件在 10 年后的浏览器里依然能完美运行。</p>
+        </div>
     </section>
-    <section>
-        <h1>STAY <span class="accent">COOL</span></h1>
-        <p>代码即艺术。感谢访问我的 GitHub Pages。</p>
+
+    <section class="slide">
+        <div class="content-wrapper">
+            <h1 class="reveal">SWIPE UP</h1>
+            <h2 class="reveal">支持移动端手势</h2>
+            <p class="reveal">在手机浏览器打开，享受丝滑的滑动切换体验。</p>
+        </div>
     </section>
 
     <script>
-        document.addEventListener('mousemove', e => {
-            const cursor = document.getElementById('cursor');
-            cursor.style.left = e.clientX - 10 + 'px';
-            cursor.style.top = e.clientY - 10 + 'px';
-        });
+        // 实现作者在 README 中提到的交互逻辑
+        const slides = document.querySelectorAll('.slide');
+        const progress = document.getElementById('progress');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // 更新进度条
+                    const index = Array.from(slides).indexOf(entry.target);
+                    progress.style.width = ((index + 1) / slides.length * 100) + '%';
+                }
+            });
+        }, { threshold: 0.6 });
+
+        slides.forEach(slide => observer.observe(slide));
     </script>
 </body>
 </html>
